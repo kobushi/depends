@@ -42,6 +42,6 @@ Then build using:
 
 ## Omake Patch for BitZeny
 
-For further documentation of Omake Patch for BitZeny, see [README](./omake/README) in the omake directory.
+For further documentation of Omake Patch for BitZeny, see [README](./omake/) in the omake directory.
 
 
