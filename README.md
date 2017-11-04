@@ -40,5 +40,8 @@ Then build using:
     cd depends
     ./buildwin32.sh
 
+## Omake Patch for BitZeny
+
+For further documentation of Omake Patch for BitZeny, see [README](./omake/README) in the omake directory.
 
 
