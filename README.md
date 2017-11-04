@@ -31,6 +31,7 @@ Then build using:
 
 For BitZeny:
 
+    cp -r -f depends your_bitzeny_src_dir
     cd your_bitzeny_src_dir
     ./autogen.sh
     CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/x86_64-w64-mingw32 --enable-upnp-default LIBS=-lpthread
@@ -49,6 +50,7 @@ Then build using:
 
 For BitZeny:
 
+    cp -r -f depends your_bitzeny_src_dir
     cd your_bitzeny_src_dir
     ./autogen.sh
     CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/i686-w64-mingw32 --enable-upnp-default LIBS=-lpthread
