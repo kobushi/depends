@@ -1,4 +1,6 @@
 BitZeny patch for this depends
 ==============================
-copy bitzeny.diff to bitzeny/src dir
-use patch command with bitzeny.diff
+copy bitzeny*.diff to bitzeny/src dir
+use patch command with bitzeny*.diff
+
+some of them were already patched on 1.2.x

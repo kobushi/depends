@@ -1,0 +1,19 @@
+diff -urN net.cpp net.cpp
+--- /net.cpp	2017-09-26 02:26:26.000000000 +0900
++++ /net.cpp	2017-10-16 01:19:27.968847100 +0900
+@@ -1060,10 +1060,14 @@
+ #ifndef UPNPDISCOVER_SUCCESS
+     /* miniupnpc 1.5 */
+     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0);
+-#else
++#elif MINIUPNPC_API_VERSION < 14
+     /* miniupnpc 1.6 */
+     int error = 0;
+     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, &error);
++#else
++    /* miniupnpc 1.9.20150730 */
++    int error = 0;
++    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, 2, &error);
+ #endif
+ 
+     struct UPNPUrls urls;

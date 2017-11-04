@@ -1,8 +1,8 @@
 PACKAGE=qt
 $(package)_version=5.2.1
-$(package)_download_path=https://github.com/kobushi/depends/releases/download/first
+$(package)_download_path=https://download.qt.io/archive/qt/5.2/$($(package)_version)/single
 $(package)_file_name=$(package)-everywhere-opensource-src-$($(package)_version).tar.gz
-$(package)_sha256_hash=7CA576A97F4A36E3BE1161B39332E1FD03C47FDADE85ECD66B9ED35E47DF89DC
+$(package)_sha256_hash=84e924181d4ad6db00239d87250cc89868484a14841f77fb85ab1f1dbdcd7da1
 $(package)_dependencies=openssl
 $(package)_linux_dependencies=freetype fontconfig dbus libxcb libX11 xproto libXext
 $(package)_build_subdir=qtbase
