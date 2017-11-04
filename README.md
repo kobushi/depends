@@ -29,6 +29,13 @@ Then build using:
     cd depends
     ./buildwin64.sh
 
+For BitZeny:
+
+    cd your_bitzeny_src_dir
+    ./autogen.sh
+    ./buildwin64.sh
+    CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/x86_64-w64-mingw32 --enable-upnp-default LIBS=-lpthread
+
 ## Building for 32-bit Windows
 
 To build executables for Windows 32-bit, install the following dependencies:
@@ -39,6 +46,13 @@ Then build using:
 
     cd depends
     ./buildwin32.sh
+
+For BitZeny:
+
+    cd your_bitzeny_src_dir
+    ./autogen.sh
+    ./buildwin64.sh
+    CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/i686-w64-mingw32 --enable-upnp-default LIBS=-lpthread
 
 ## Omake Patch for BitZeny
 
