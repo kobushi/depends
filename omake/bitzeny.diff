@@ -1,0 +1,73 @@
+diff -urN chainparams.cpp chainparams.cpp
+--- /chainparams.cpp	2017-09-26 02:26:26.000000000 +0900
++++ /chainparams.cpp	2017-10-16 01:23:02.110423200 +0900
+@@ -84,11 +84,11 @@
+ 
+         vSeeds.push_back(CDNSSeedData("bitzeny.org", "seed.bitzeny.org"));
+ 
+-        base58Prefixes[PUBKEY_ADDRESS] = list_of(81);
+-        base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
+-        base58Prefixes[SECRET_KEY] =     list_of(128);
+-        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E);
+-        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4);
++        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,81);
++        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
++        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
++        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
++        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
+ 
+         // Convert the pnSeeds array into usable address objects.
+         for (unsigned int i = 0; i < ARRAYLEN(pnSeed); i++)
+@@ -165,11 +165,11 @@
+         vSeeds.push_back(CDNSSeedData("bitcoin.petertodd.org", "testnet-seed.bitcoin.petertodd.org"));
+         vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
+ 
+-        base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
+-        base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
+-        base58Prefixes[SECRET_KEY]     = list_of(239);
+-        base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x35)(0x87)(0xCF);
+-        base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x35)(0x83)(0x94);
++        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
++        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
++        base58Prefixes[SECRET_KEY]     = std::vector<unsigned char>(1,239);
++        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
++        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
+     }
+     virtual Network NetworkID() const { return CChainParams::TESTNET; }
+ };
+diff -urN main.cpp main.cpp
+--- /main.cpp	2017-09-26 02:26:26.000000000 +0900
++++ /main.cpp	2017-10-16 02:12:37.394449000 +0900
+@@ -1289,11 +1289,11 @@
+ 
+     // Check range
+     if (bnTarget <= 0 || bnTarget > Params().ProofOfWorkLimit())
+-        return error("CheckProofOfWork() : nBits below minimum work");
++        return false;//error("CheckProofOfWork() : nBits below minimum work");
+ 
+     // Check proof of work matches claimed amount
+     if (hash > bnTarget.getuint256())
+-        return error("CheckProofOfWork() : hash doesn't match nBits");
++        return false;//error("CheckProofOfWork() : hash doesn't match nBits");
+ 
+     return true;
+ }
+diff -urN net.cpp net.cpp
+--- /net.cpp	2017-09-26 02:26:26.000000000 +0900
++++ /net.cpp	2017-10-16 01:19:27.968847100 +0900
+@@ -1060,10 +1060,14 @@
+ #ifndef UPNPDISCOVER_SUCCESS
+     /* miniupnpc 1.5 */
+     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0);
+-#else
++#elif MINIUPNPC_API_VERSION < 14
+     /* miniupnpc 1.6 */
+     int error = 0;
+     devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, &error);
++#else
++    /* miniupnpc 1.9.20150730 */
++    int error = 0;
++    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, 2, &error);
+ #endif
+ 
+     struct UPNPUrls urls;

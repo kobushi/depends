@@ -10,4 +10,4 @@ cp ./libpng.a ../i686-w64-mingw32/lib
 cp ./png.h ../i686-w64-mingw32/include
 cp ./pngconf.h ../i686-w64-mingw32/include
 cp ./pnglibconf.h ../i686-w64-mingw32/include
-
+cd ..
