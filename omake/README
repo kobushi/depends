@@ -1,4 +1,4 @@
 BitZeny patch for this depends
 ==============================
-copy bitzeny.diff to src dir
+copy bitzeny.diff to bitzeny/src dir
 use patch command with bitzeny.diff
