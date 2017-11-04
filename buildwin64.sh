@@ -1,6 +1,6 @@
 #!/bin/sh
 make HOST=x86_64-w64-mingw32
-wget https://github.com/kobushi/depends/releases/download/first/libpng-1.6.34.tar.gz
+wget https://ftp-osl.osuosl.org/pub/libpng/src/libpng16/libpng-1.6.34.tar.gz
 tar -zxvf libpng-1.6.34.tar.gz
 cd libpng-1.6.34
 cp ../x86_64-w64-mingw32/include/zlib.h ./
