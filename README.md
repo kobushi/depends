@@ -33,8 +33,8 @@ For BitZeny:
 
     cd your_bitzeny_src_dir
     ./autogen.sh
-    ./buildwin64.sh
     CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/x86_64-w64-mingw32 --enable-upnp-default LIBS=-lpthread
+    make
 
 ## Building for 32-bit Windows
 
@@ -51,8 +51,8 @@ For BitZeny:
 
     cd your_bitzeny_src_dir
     ./autogen.sh
-    ./buildwin64.sh
     CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=$PWD/depends/i686-w64-mingw32 --enable-upnp-default LIBS=-lpthread
+    make
 
 ## Omake Patch for BitZeny
 
